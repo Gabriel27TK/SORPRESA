@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Día del Padre | Alenno 26</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --neon-blue: #0099ff;
+            --cyber-cyan: #00f3ff;
+            --liquid-gold: #d4af37;
+            --dark-space: #030712;
+            --glass-bg: rgba(3, 7, 18, 0.85);
+            --border-light: rgba(212, 175, 55, 0.25);
+        }
+
+        body {
+            background-color: var(--dark-space);
+            color: #f1f5f9;
+            font-family: 'Montserrat', sans-serif;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            perspective: 1500px;
+        }
+
+        .serif-italics {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+
+        .tech-font {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        #particles {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        /* ESCENA 1: EL PANEL DE ENCENDIDO */
+        .ignition-panel {
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: 440px;
+            background: var(--glass-bg);
+            border: 1px solid var(--border-light);
+            box-shadow: 0 30px 100px rgba(0,0,0,0.8), 0 0 40px rgba(0, 153, 255, 0.1);
+            border-radius: 30px;
+            padding: 50px 35px;
+            text-align: center;
+            backdrop-filter: blur(20px);
+            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .panel-header {
+            font-size: 0.65rem;
+            color: var(--liquid-gold);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 35px;
+        }
+
+        .start-btn-container {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 35px auto;
+        }
+
+        .start-btn {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 125px;
+            height: 125px;
+            background: radial-gradient(circle, #082f49 0%, #020617 100%);
+            border: 3px solid var(--neon-blue);
+            border-radius: 50%;
+            color: #fff;
+            font-weight: 900;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 30px rgba(0, 153, 255, 0.3), inset 0 0 15px rgba(0, 153, 255, 0.2);
+        }
+
+        .start-btn:hover {
+            box-shadow: 0 0 50px var(--cyber-cyan), inset 0 0 25px rgba(0, 243, 255, 0.4);
+            border-color: var(--cyber-cyan);
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+
+        .start-btn:active {
+            transform: translate(-50%, -50%) scale(0.95);
+        }
+
+        .rpm-indicator {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            border: 2px dashed rgba(214, 175, 55, 0.4);
+            border-radius: 50%;
+            animation: rotateIndicator 12s linear infinite;
+        }
+
+        @keyframes rotateIndicator {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* ESCENA 2: LA CARTA DE GALA */
+        .luxury-card {
+            position: absolute;
+            z-index: 20;
+            width: 92%;
+            max-width: 480px;
+            height: auto;
+            max-height: 90vh;
+            background: linear-gradient(145deg, #020617 0%, #090d16 100%);
+            border: 1px solid var(--border-light);
+            border-radius: 24px;
+            padding: 30px 25px;
+            text-align: center;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(80px) scale(0.95);
+            transition: all 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.95), 0 0 50px rgba(212, 175, 55, 0.05);
+            overflow-y: auto;
+        }
+
+        /* Personalización del scroll interno para pantallas pequeñas */
+        .luxury-card::-webkit-scrollbar {
+            width: 4px;
+        }
+        .luxury-card::-webkit-scrollbar-thumb {
+            background: var(--liquid-gold);
+            border-radius: 10px;
+        }
+
+        .luxury-card.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0) scale(1);
+        }
+
+        .car-container {
+            width: 100%;
+            height: 110px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .premium-car-svg {
+            width: 85%;
+            height: auto;
+            filter: drop-shadow(0 5px 15px rgba(0, 153, 255, 0.25));
+        }
+
+        .car-stroke {
+            fill: none;
+            stroke: var(--cyber-cyan);
+            stroke-width: 1.5;
+            stroke-dasharray: 800;
+            stroke-dashoffset: 800;
+            animation: drawProfile 4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        .car-accent {
+            fill: none;
+            stroke: var(--liquid-gold);
+            stroke-width: 1.2;
+            stroke-dasharray: 400;
+            stroke-dashoffset: 400;
+            animation: drawProfile 3.5s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.5s;
+        }
+
+        @keyframes drawProfile {
+            to { stroke-dashoffset: 0; }
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            padding: 15px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-label {
+            font-size: 0.55rem;
+            color: var(--liquid-gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .stat-num {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(0, 153, 255, 0.3);
+        }
+
+        .stat-caption {
+            font-size: 0.55rem;
+            color: #94a3b8;
+            margin-top: 2px;
+        }
+
+        /* DESTRELLO DE CHISPAS */
+        .sparkle-point {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: floatGlow 4s ease-out infinite;
+        }
+
+        @keyframes floatGlow {
+            0% { transform: translateY(0) scale(0); opacity: 0; }
+            50% { opacity: 0.7; }
+            100% { transform: translateY(-150px) scale(1); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="particles"></canvas>
+
+    <!-- REPRODUCTOR DE MÚSICA CONFIGURABLE -->
+    <audio id="bg-music" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- ESCENA 1: PANEL DE IGNICIÓN -->
+    <div class="ignition-panel" id="dashboardScreen">
+        <div class="panel-header tech-font">Sistema de Acceso Privado</div>
+        <div class="start-btn-container">
+            <div class="rpm-indicator"></div>
+            <button class="start-btn tech-font" id="ignitionBtn" onclick="igniteEngine()">
+                ENGINE
+                <span class="text-xs text-[#00f3ff] font-extrabold mt-1">START</span>
+                <span class="text-[0.45rem] text-slate-400 mt-1">SISTEMA</span>
+            </button>
+        </div>
+        <div class="text-xs text-slate-400 tracking-wider">
+            [ PULSA PARA ARRANCAR EL VIAJE ]
+        </div>
+    </div>
+
+    <!-- ESCENA 2: CARTA DE GALA -->
+    <div class="luxury-card" id="cardScreen">
+        <div class="car-container">
+            <!-- Supercar Vectorial Líneas de Neón Azul y Oro -->
+            <svg class="premium-car-svg" viewBox="0 0 350 120" xmlns="http://www.w3.org/2000/svg">
+                <!-- Chasis Superior Aerodinámico -->
+                <path class="car-stroke" d="M20,95 Q40,95 50,85 L80,68 L140,32 Q180,28 230,30 L285,55 L315,75 Q335,85 330,95 L290,95" />
+                <!-- Lazo del Spoiler y Detalle Trasero -->
+                <path class="car-accent" d="M12,90 L22,95 L15,90" />
+                <path class="car-stroke" d="M140,32 L200,32 Q250,32 270,50 L285,55" />
+                <!-- Ruedas y Guardabarros -->
+                <path class="car-stroke" d="M50,95 A22,22 0 0,1 94,95" />
+                <path class="car-stroke" d="M230,95 A22,22 0 0,1 274,95" />
+                <!-- Línea de Conexión Inferior de Chasis -->
+                <path class="car-stroke" d="M94,95 L230,95 M274,95 L320,95 M20,95 L50,95" />
+                <!-- Llantas de Oro -->
+                <circle cx="72" cy="95" r="14" stroke="var(--liquid-gold)" stroke-width="1.5" fill="none" opacity="0.8" />
+                <circle cx="72" cy="95" r="6" stroke="var(--liquid-gold)" stroke-width="1" fill="none" />
+                <circle cx="252" cy="95" r="14" stroke="var(--liquid-gold)" stroke-width="1.5" fill="none" opacity="0.8" />
+                <circle cx="252" cy="95" r="6" stroke="var(--liquid-gold)" stroke-width="1" fill="none" />
+                <!-- Faros Neón Delanteros -->
+                <path d="M312,74 L325,78" stroke="var(--cyber-cyan)" stroke-width="3" stroke-linecap="round" />
+            </svg>
+        </div>
+
+        <!-- Tablero de Rendimiento de Valores -->
+        <div class="stats-grid tech-font">
+            <div class="stat-card">
+                <span class="stat-label">Resiliencia</span>
+                <span class="stat-num" id="resilienciaVal">0</span>
+                <span class="stat-caption">KM/H</span>
+            </div>
+            <div class="stat-card" style="border-left: 1px solid rgba(214,175,55,0.15); border-right: 1px solid rgba(214,175,55,0.15);">
+                <span class="stat-label">Conexión</span>
+                <span class="stat-num" id="distanciaVal">0</span>
+                <span class="stat-caption">ITALIA +39</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Familia</span>
+                <span class="stat-num" id="amorVal">0</span>
+                <span class="stat-caption">RPM MAX</span>
+            </div>
+        </div>
+
+        <!-- Mensaje Reflexivo y de Agradecimiento -->
+        <div class="text-center px-2">
+            <h1 class="serif-italics text-4xl text-white mb-5">Para mi gran Piloto</h1>
+            
+            <p class="text-sm leading-relaxed text-slate-300 font-light mb-6 text-justify">
+                Papá, la distancia física —esos miles de kilómetros que nos separan hasta ese indicativo <span class="text-[#00f3ff] font-bold">+39</span>— se desvanece por completo cuando el motor que nos une está construido de respeto y memoria. 
+                <br><br>
+                Sé bien que la autopista de la vida no siempre ha sido una ruta pavimentada. Hemos atravesado curvas sumamente complejas, baches, diferencias y tormentas que pusieron a prueba nuestra resistencia. Pero hoy, mirando hacia atrás, me llena de orgullo ver que **seguimos en pie, fuertes y estables en la vía**. 
+                <br><br>
+                Toca mantener la mirada siempre firme en el horizonte, acelerar con sabiduría y seguir haciendo las cosas de manera ejemplar, justo como me enseñaste. Tu familia aquí te piensa constantemente, te apoya y te ama sin límites geográficos.
+            </p>
+
+            <div class="w-16 h-[1px] bg-[#d4af37] mx-auto mb-6"></div>
+
+            <p class="text-xs italic text-[#d4af37] leading-relaxed mb-8">
+                Espero de corazón que hayas pasado un día espectacular hoy. Te envío un abrazo apretado y firme que cruza océanos enteros. Espero que este pequeño tributo interactivo te haya sacado una gran sonrisa.
+            </p>
+
+            <div class="signature tech-font text-[0.65rem] tracking-[4px] text-white font-bold uppercase">
+                A la distancia — Tu Hijo Gabriel ⚡
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // 🎵 PERSONALIZA TU MÚSICA AQUÍ 🎵
+        // Pon el enlace directo de tu .mp3 preferido
+        // ==========================================
+        const CANCION_URL = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3";
+
+        const bgMusic = document.getElementById('bg-music');
+        bgMusic.querySelector('source').src = CANCION_URL;
+        bgMusic.load();
+
+        // Rugido sintético del motor (VROOOOM!)
+        function playEngineStartSound() {
+            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const now = audioCtx.currentTime;
+
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sawtooth';
+            
+            // Frecuencia simulando aceleración inicial y ralentí de motor
+            osc.frequency.setValueAtTime(35, now);
+            osc.frequency.exponentialRampToValueAtTime(180, now + 0.15);
+            osc.frequency.exponentialRampToValueAtTime(75, now + 0.5);
+            osc.frequency.linearRampToValueAtTime(55, now + 1.4);
+            osc.frequency.exponentialRampToValueAtTime(0.01, now + 2.2);
+
+            const filter = audioCtx.createBiquadFilter();
+            filter.type = 'lowpass';
+            filter.frequency.setValueAtTime(260, now);
+
+            gain.gain.setValueAtTime(0, now);
+            gain.gain.linearRampToValueAtTime(0.65, now + 0.15);
+            gain.gain.exponentialRampToValueAtTime(0.25, now + 0.6);
+            gain.gain.linearRampToValueAtTime(0.01, now + 2.2);
+
+            osc.connect(filter);
+            filter.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            osc.start(now);
+            osc.stop(now + 2.3);
+        }
+
+        // Activación del Tablero
+        function igniteEngine() {
+            try {
+                playEngineStartSound();
+            } catch(e) {
+                console.log("Audio sintético no disponible.");
+            }
+
+            try {
+                bgMusic.play();
+            } catch(e) {
+                console.log("La reproducción de música requiere interacción.");
+            }
+
+            const dashboard = document.getElementById('dashboardScreen');
+            const card = document.getElementById('cardScreen');
+
+            dashboard.style.transform = "scale(0.8) rotateX(-90deg)";
+            dashboard.style.opacity = "0";
+
+            setTimeout(() => {
+                dashboard.style.display = "none";
+                card.classList.add('active');
+                animateGauges();
+                spawnSparkles();
+            }, 800);
+        }
+
+        // Animación progresiva de los velocímetros del tablero
+        function animateGauges() {
+            let resVal = 0, distVal = 0, amoVal = 0;
+            const resInterval = setInterval(() => {
+                if(resVal < 320) { resVal += 10; document.getElementById('resilienciaVal').innerText = resVal; }
+                else { clearInterval(resInterval); }
+            }, 40);
+
+            const distInterval = setInterval(() => {
+                if(distVal < 100) { distVal += 4; document.getElementById('distanciaVal').innerText = distVal + "%"; }
+                else { clearInterval(distInterval); }
+            }, 50);
+
+            const amoInterval = setInterval(() => {
+                if(amoVal < 99) { amoVal += 3; document.getElementById('amorVal').innerText = amoVal + "%"; }
+                else { document.getElementById('amorVal').innerText = "MAX"; clearInterval(amoInterval); }
+            }, 40);
+        }
+
+        // Chispas neón que flotan alrededor de la tarjeta
+        function spawnSparkles() {
+            const card = document.getElementById('cardScreen');
+            for(let i=0; i<40; i++) {
+                setTimeout(() => {
+                    const s = document.createElement('div');
+                    s.className = 'sparkle-point';
+                    s.style.left = Math.random() * 100 + '%';
+                    s.style.bottom = '10px';
+                    s.style.width = Math.random() * 4 + 2 + 'px';
+                    s.style.height = s.style.width;
+                    s.style.backgroundColor = Math.random() > 0.5 ? 'var(--cyber-cyan)' : 'var(--liquid-gold)';
+                    s.style.boxShadow = `0 0 12px ${s.style.backgroundColor}`;
+                    s.style.animationDuration = Math.random() * 2.5 + 2.5 + 's';
+                    card.appendChild(s);
+                    setTimeout(() => s.remove(), 5000);
+                }, i * 140);
+            }
+        }
+
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        let starfield = [];
+
+        function initStars() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            starfield = [];
+            for(let i=0; i<150; i++) {
+                starfield.push({
+                    x: Math.random() * canvas.width - canvas.width/2,
+                    y: Math.random() * canvas.height - canvas.height/2,
+                    z: Math.random() * canvas.width,
+                    color: Math.random() > 0.7 ? '#00f3ff' : '#ffffff'
+                });
+            }
+        }
+
+        function drawStars() {
+            ctx.fillStyle = '#02050c';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            const cx = canvas.width / 2;
+            const cy = canvas.height / 2;
+
+            starfield.forEach(s => {
+                s.z -= 6; // Simulación de velocidad del auto
+                if (s.z <= 0) s.z = canvas.width;
+
+                const sx = (s.x / s.z) * cx + cx;
+                const sy = (s.y / s.z) * cy + cy;
+                const size = (1 - s.z / canvas.width) * 2.5;
+
+                ctx.fillStyle = s.color;
+                ctx.beginPath();
+                ctx.arc(sx, sy, Math.max(0.1, size), 0, Math.PI * 2);
+                ctx.fill();
+            });
+            requestAnimationFrame(drawStars);
+        }
+
+        window.addEventListener('resize', initStars);
+        initStars();
+        drawStars();
+    </script>
+</body>
+</html>
