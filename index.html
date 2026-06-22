@@ -46,6 +46,7 @@
             opacity: 0.55;
         }
 
+        /* */
         /* ESCENA 1: EL PANTALLAZO DE INICIO */
         .ignition-panel {
             position: relative;
@@ -123,6 +124,7 @@
             to { transform: rotate(360deg); }
         }
 
+        /* */
         /* ESCENA 2: LA CARTA DE GALA */
         .luxury-card {
             position: absolute;
@@ -256,6 +258,7 @@
 
     <canvas id="particles"></canvas>
 
+    <!-- -->
     <!-- REPRODUCTOR DE MÚSICA CONFIGURABLE -->
     <audio id="bg-music" loop>
         <source src="Piero - Mi Viejo.flac" type="audio/mpeg">
@@ -277,6 +280,7 @@
         </div>
     </div>
 
+    <!-- -->
     <!-- ESCENA 2: CARTA DE GALA DEL CAPITÁN -->
     <div class="luxury-card" id="cardScreen">
         <div class="ball-container">
@@ -320,6 +324,7 @@
             </div>
         </div>
 
+        <!-- -->
         <!-- Mensaje de Reflexión y Agradecimiento -->
         <div class="text-center px-2">
             <h1 class="serif-italics text-4xl text-white mb-5">Para mi Gran Capitán</h1>
@@ -327,29 +332,33 @@
             <p class="text-sm leading-relaxed text-slate-300 font-light mb-6 text-justify">
                 Papá, la vida es el partido más largo y complejo que nos ha tocado disputar. A lo largo de los noventa minutos, hemos tenido jugadas difíciles, momentos donde el marcador parecía estar en contra, baches tácticos, diferencias y lesiones que pusieron a prueba nuestra resistencia.
                 <br><br>
-                Pero si hay algo sumamente valioso que me has enseñado, es que un verdadero capitán nunca agacha la cabeza ante la adversidad. Hoy, mirando hacia atrás, me llena de un orgullo tremendo ver que **seguimos firmes en la cancha, con la camiseta puesta y estables en nuestro juego**.
+                Hay cosas que con el tiempo uno aprende a valorar de otra manera. Las dificultades que hemos vivido como familia, los momentos donde el camino se puso cuesta arriba, las distancias y los silencios que a veces dolieron más de lo esperado — todo eso hoy lo veo de otra forma. No como heridas, sino como prueba de que **seguimos aquí, juntos, a pesar de todo**.
                 <br><br>
-                A pesar de la inmensa distancia —esos miles de kilómetros que nos separan hasta ese indicativo de tu celular <span class="text-[#00f3ff] font-bold">+39</span>— seguimos jugando en la misma sintonía y con el mismo corazón. Toca mantener la mirada al frente, jugar limpio y seguir haciendo las cosas de manera ejemplar, justo como me enseñaste con tu liderazgo. Tu familia te piensa constantemente, te apoya y te quiere con un amor que supera cualquier frontera.
+                Y eso no es algo menor. Seguir en pie después de lo que hemos atravesado dice mucho de nosotros, y dice mucho de ti.
+                <br><br>
+                Quiero que sepas que tu familia te piensa, te extraña y te quiere con una intensidad que no entiende de kilómetros ni de distancias (esos miles de kilómetros que nos separan hasta ese indicativo de tu celular <span class="text-[#00f3ff] font-bold">+39</span>). Que el orgullo que sentimos por tenerte es genuino, y que el cariño que hay aquí para ti no ha disminuido con el tiempo — al contrario, ha crecido.
             </p>
 
             <div class="w-16 h-[1px] bg-[#d4af37] mx-auto mb-6"></div>
 
             <p class="text-xs italic text-[#d4af37] leading-relaxed mb-8">
-                Espero de corazón que hayas tenido un día espectacular hoy allá en Italia. Te envío un abrazo apretadísimo, de esos que cruzan océanos y rompen fronteras físicas. Espero que esta pequeña sorpresa interactiva te haya sacado una gran sonrisa.
+                Espero de corazón que este día haya sido especial para ti, que hayas tenido paz, buenos momentos y razones para sonreír. Te lo mereces. 
+                Ojalá este pequeño regalo virtual te haya llegado al alma y te haya sacado una sonrisa grande. Va un abrazo enorme desde acá, de esos que cruzan cualquier distancia.
             </p>
 
             <div class="signature tech-font text-[0.65rem] tracking-[4px] text-white font-bold uppercase">
-                A la distancia — Tu Hijo Gabriel ⚡
+                Te queremos muchísimo — Tu familia querida ❤️
             </div>
         </div>
     </div>
 
+    <!-- -->
     <script>
         // ==========================================
-        // 🎵 PERSONALIZA TU MÚSICA AQUÍ 🎵
-        // Reemplaza este link por el .mp3 que quieras usar
+        // 🎵 PERSONALIZACIÓN DE AUDIO LOCAL 🎵
+        // Apunta directamente a tu archivo flac o mp3 en GitHub
         // ==========================================
-        const CANCION_URL = "MI VIEJO - PIERO.mp3";
+        const CANCION_URL = "Piero - Mi Viejo.flac";
 
         const bgMusic = document.getElementById('bg-music');
         bgMusic.querySelector('source').src = CANCION_URL;
